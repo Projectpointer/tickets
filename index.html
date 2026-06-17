@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ticketmaster · Live events</title>
-  <!-- Font Awesome for simple icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -13,19 +13,16 @@
       box-sizing: border-box;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     }
-
     body {
       background-color: #f5f7fa;
       color: #1e1e2a;
     }
-
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 24px;
     }
-
-    /* ----- HEADER / LOGO ----- */
+    /* header */
     .navbar {
       display: flex;
       align-items: center;
@@ -34,7 +31,6 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       background-color: #ffffff;
     }
-
     .logo {
       display: flex;
       align-items: center;
@@ -42,37 +38,11 @@
       text-decoration: none;
       color: #0046be;
     }
-
-    .logo i {
-      font-size: 2rem;
-      color: #0046be;
-    }
-
-    .logo span {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .logo .tm {
-      font-weight: 300;
-      font-size: 1rem;
-      color: #0046be;
-      margin-left: 2px;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .nav-actions i {
-      font-size: 1.3rem;
-      color: #2c2c3a;
-      cursor: default;
-    }
-
+    .logo i { font-size: 2rem; color: #0046be; }
+    .logo span { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+    .logo .tm { font-weight: 300; font-size: 1rem; color: #0046be; margin-left: 2px; }
+    .nav-actions { display: flex; gap: 20px; align-items: center; }
+    .nav-actions i { font-size: 1.3rem; color: #2c2c3a; cursor: default; }
     .btn-outline {
       background: transparent;
       border: 1px solid #0046be;
@@ -83,8 +53,7 @@
       font-size: 0.9rem;
       cursor: default;
     }
-
-    /* ----- HERO / HIGHLIGHT NUMBER ----- */
+    /* highlight */
     .highlight-section {
       background: linear-gradient(145deg, #ffffff, #f0f4fe);
       border-radius: 40px;
@@ -95,14 +64,26 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 8px 24px rgba(0, 70, 190, 0.06);
+      position: relative;
     }
-
+    .highlight-section::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      height: 60%;
+      width: 4px;
+      background: #ffb347;
+      border-radius: 8px;
+      transform: translateX(-50%);
+      opacity: 0.5;
+    }
     .highlight-number {
       display: flex;
       align-items: baseline;
       gap: 6px;
+      flex: 1 1 40%;
     }
-
     .highlight-number .big-number {
       font-size: 4.2rem;
       font-weight: 800;
@@ -110,31 +91,38 @@
       letter-spacing: -2px;
       line-height: 1;
     }
-
     .highlight-number .label {
       font-size: 1.2rem;
       font-weight: 500;
       color: #2c2c3a;
       margin-left: 8px;
     }
-
-    .highlight-tagline {
-      font-size: 1.3rem;
-      font-weight: 400;
-      background: #e6edfc;
-      padding: 10px 28px;
+    .highlight-phone {
+      background: #fff1e0;
+      padding: 14px 32px;
       border-radius: 60px;
-      color: #0046be;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+      box-shadow: 0 4px 12px rgba(255, 180, 50, 0.15);
+      border: 1px solid #ffd7a8;
+      flex: 1 1 40%;
+      justify-content: center;
     }
-
-    .highlight-tagline i {
-      font-size: 1.6rem;
+    .highlight-phone i { font-size: 1.8rem; color: #c96f0e; }
+    .highlight-phone .phone-number {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #a35f0a;
+      letter-spacing: 0.5px;
     }
-
-    /* ----- CONCERT CARDS (ticket concerts) ----- */
+    .highlight-phone .phone-label {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7a4f1a;
+      margin-right: 4px;
+    }
+    /* cards */
     .section-title {
       font-size: 1.8rem;
       font-weight: 700;
@@ -143,19 +131,13 @@
       align-items: center;
       gap: 12px;
     }
-
-    .section-title i {
-      color: #0046be;
-      font-size: 2rem;
-    }
-
+    .section-title i { color: #0046be; font-size: 2rem; }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 28px;
       margin-bottom: 20px;
     }
-
     .concert-card {
       background: #ffffff;
       border-radius: 28px;
@@ -166,36 +148,19 @@
       display: flex;
       flex-direction: column;
     }
-
     .concert-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 16px 32px rgba(0, 70, 190, 0.08);
       border-color: #0046be20;
     }
-
-    .card-icon {
-      font-size: 2.2rem;
-      color: #0046be;
-      margin-bottom: 12px;
-    }
-
-    .concert-card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .concert-card .artist {
-      font-weight: 600;
-      color: #1e1e2a;
-    }
-
+    .card-icon { font-size: 2.2rem; color: #0046be; margin-bottom: 12px; }
+    .concert-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+    .concert-card .artist { font-weight: 600; color: #1e1e2a; }
     .concert-card .venue {
       color: #5b5b6b;
       font-size: 0.9rem;
       margin: 6px 0 12px;
     }
-
     .card-footer {
       margin-top: auto;
       display: flex;
@@ -204,12 +169,7 @@
       border-top: 1px solid #eee;
       padding-top: 14px;
     }
-
-    .price {
-      font-weight: 700;
-      color: #0046be;
-    }
-
+    .price { font-weight: 700; color: #0046be; }
     .tag {
       background: #eef3fc;
       padding: 4px 14px;
@@ -219,8 +179,7 @@
       color: #0046be;
       letter-spacing: 0.3px;
     }
-
-    /* description about tickets */
+    /* description */
     .ticket-description {
       background: #ffffff;
       border-radius: 32px;
@@ -229,7 +188,6 @@
       border-left: 6px solid #0046be;
       box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
-
     .ticket-description h2 {
       display: flex;
       align-items: center;
@@ -238,19 +196,14 @@
       font-weight: 600;
       margin-bottom: 14px;
     }
-
     .ticket-description p {
       font-size: 1.1rem;
       line-height: 1.6;
       color: #2c2c3a;
       max-width: 800px;
     }
-
-    .ticket-description i {
-      color: #0046be;
-    }
-
-    /* ----- FAQ section ----- */
+    .ticket-description i { color: #0046be; }
+    /* FAQ */
     .faq-section {
       background: #ffffff;
       border-radius: 40px;
@@ -258,7 +211,6 @@
       margin: 48px 0 40px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
-
     .faq-section h2 {
       font-size: 2rem;
       font-weight: 700;
@@ -267,16 +219,11 @@
       align-items: center;
       gap: 12px;
     }
-
     .faq-item {
       border-bottom: 1px solid #eaeef5;
       padding: 20px 0;
     }
-
-    .faq-item:last-child {
-      border-bottom: 0;
-    }
-
+    .faq-item:last-child { border-bottom: 0; }
     .faq-question {
       display: flex;
       justify-content: space-between;
@@ -284,19 +231,14 @@
       font-size: 1.1rem;
       cursor: default;
     }
-
-    .faq-question i {
-      color: #0046be;
-    }
-
+    .faq-question i { color: #0046be; }
     .faq-answer {
       margin-top: 10px;
       color: #3d3d4e;
       line-height: 1.5;
       padding-right: 24px;
     }
-
-    /* ----- FOOTER with links ----- */
+    /* footer links + content cards (Privacy, Contact, About, Terms, Help) */
     .footer {
       background: #ffffff;
       border-radius: 32px 32px 0 0;
@@ -304,7 +246,6 @@
       margin-top: 40px;
       border-top: 1px solid #e6ecf5;
     }
-
     .footer-links {
       display: flex;
       flex-wrap: wrap;
@@ -312,7 +253,6 @@
       gap: 32px 48px;
       margin-bottom: 28px;
     }
-
     .footer-links a {
       text-decoration: none;
       color: #1e1e2a;
@@ -322,16 +262,66 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
     }
+    .footer-links a i { color: #0046be; font-size: 0.9rem; }
+    .footer-links a:hover { color: #0046be; }
 
-    .footer-links a i {
-      color: #0046be;
-      font-size: 0.9rem;
+    /* ---- page content cards (hidden by default, shown via :target) ---- */
+    .page-content {
+      display: none;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 40px 40px;
+      margin: 32px 0 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #eef2f8;
     }
-
-    .footer-links a:hover {
+    .page-content:target {
+      display: block;
+    }
+    .page-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       color: #0046be;
     }
+    .page-content h2 i { font-size: 2rem; }
+    .page-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #2c2c3a;
+      max-width: 800px;
+      margin-bottom: 16px;
+    }
+    .page-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+    .page-content ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f4fc;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .page-content ul li i { color: #0046be; width: 24px; }
+    .back-home {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 28px;
+      background: #0046be;
+      color: white;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .back-home:hover { background: #003399; }
 
     .footer-copy {
       text-align: center;
@@ -340,181 +330,207 @@
       border-top: 1px solid #eef2f8;
       padding-top: 24px;
     }
-
-    .footer-copy i {
-      color: #0046be;
-      margin: 0 4px;
-    }
+    .footer-copy i { color: #0046be; margin: 0 4px; }
 
     /* responsive */
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
       .highlight-section {
         flex-direction: column;
         align-items: flex-start;
-        gap: 24px;
+        gap: 28px;
         padding: 32px 24px;
       }
-      .highlight-number .big-number {
-        font-size: 3.2rem;
-      }
-      .highlight-tagline {
-        font-size: 1rem;
-        padding: 8px 20px;
-      }
-      .ticket-description {
-        padding: 24px 20px;
-      }
-      .faq-section {
-        padding: 28px 20px;
-      }
-      .footer-links {
-        gap: 20px;
+      .highlight-section::after { display: none; }
+      .highlight-number .big-number { font-size: 3.2rem; }
+      .highlight-phone {
+        width: 100%;
         justify-content: center;
+        padding: 14px 20px;
       }
+      .highlight-phone .phone-number { font-size: 1.4rem; }
+      .ticket-description { padding: 24px 20px; }
+      .faq-section { padding: 28px 20px; }
+      .footer-links { gap: 20px; justify-content: center; }
+      .page-content { padding: 28px 20px; }
+    }
+    @media (max-width: 500px) {
+      .highlight-phone { flex-wrap: wrap; gap: 8px; }
+      .highlight-phone .phone-number { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER with Ticketmaster logo -->
-    <header class="navbar">
-      <a href="#" class="logo" aria-label="Ticketmaster">
-        <i class="fas fa-ticket-alt"></i>
-        <span>Ticketmaster</span>
-        <span class="tm">®</span>
-      </a>
-      <div class="nav-actions">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-user-circle"></i>
-        <span class="btn-outline"><i class="fas fa-map-pin" style="margin-right: 6px;"></i> My events</span>
-      </div>
-    </header>
-
-    <!-- HIGHLIGHT: big number + concerts -->
-    <section class="highlight-section">
-      <div class="highlight-number">
-        <span class="big-number">87M+</span>
-        <span class="label">tickets sold</span>
-      </div>
-      <div class="highlight-tagline">
-        <i class="fas fa-music"></i> 
-        <span>1,200+ live concerts this month</span>
-        <i class="fas fa-arrow-right" style="font-size: 1rem; opacity: 0.7;"></i>
-      </div>
-    </section>
-
-    <!-- CONCERT CARDS (ticket concerts) -->
-    <div class="section-title">
-      <i class="fas fa-guitar"></i> 
-      <span>Trending ticket concerts</span>
+  <!-- HEADER -->
+  <header class="navbar">
+    <a href="#" class="logo" aria-label="Ticketmaster">
+      <i class="fas fa-ticket-alt"></i>
+      <span>Ticketmaster</span>
+      <span class="tm">®</span>
+    </a>
+    <div class="nav-actions">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user-circle"></i>
+      <span class="btn-outline"><i class="fas fa-map-pin" style="margin-right: 6px;"></i> My events</span>
     </div>
+  </header>
 
-    <div class="card-grid">
-      <div class="concert-card">
-        <div class="card-icon"><i class="fas fa-microphone-alt"></i></div>
-        <h3 class="artist">Taylor Swift</h3>
-        <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> SoFi Stadium, LA</div>
-        <div class="card-footer">
-          <span class="price">from $129</span>
-          <span class="tag">verified</span>
-        </div>
-      </div>
-      <div class="concert-card">
-        <div class="card-icon"><i class="fas fa-drum"></i></div>
-        <h3 class="artist">Coldplay</h3>
-        <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> Wembley, London</div>
-        <div class="card-footer">
-          <span class="price">from $95</span>
-          <span class="tag">sold out</span>
-        </div>
-      </div>
-      <div class="concert-card">
-        <div class="card-icon"><i class="fas fa-headphones"></i></div>
-        <h3 class="artist">Beyoncé · Renaissance</h3>
-        <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> MetLife, NJ</div>
-        <div class="card-footer">
-          <span class="price">from $210</span>
-          <span class="tag">verified</span>
-        </div>
-      </div>
-      <div class="concert-card">
-        <div class="card-icon"><i class="fas fa-guitar"></i></div>
-        <h3 class="artist">Ed Sheeran</h3>
-        <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> Rogers Centre, Toronto</div>
-        <div class="card-footer">
-          <span class="price">from $78</span>
-          <span class="tag">low stock</span>
-        </div>
-      </div>
+  <!-- HIGHLIGHT: 87M + phone -->
+  <section class="highlight-section">
+    <div class="highlight-number">
+      <span class="big-number">87M+</span>
+      <span class="label">tickets sold</span>
     </div>
-
-    <!-- DESCRIPTION about tickets -->
-    <div class="ticket-description">
-      <h2><i class="fas fa-circle-check"></i> Official tickets, verified & secure</h2>
-      <p>
-        Every ticket sold on Ticketmaster is 100% verified — backed by the official venue and artist.
-        Enjoy seamless entry, mobile transfer, and dedicated support. 
-        From stadium rock to intimate jazz, find your concert and book with confidence.
-      </p>
-      <p style="margin-top: 12px; font-weight: 400; color: #0046be;">
-        <i class="fas fa-shield-alt" style="margin-right: 8px;"></i> FanProtect guarantee included.
-      </p>
+    <div class="highlight-phone">
+      <i class="fas fa-phone-alt"></i>
+      <span class="phone-label">Contact</span>
+      <span class="phone-number">+1 (800) 653‑8000</span>
     </div>
+  </section>
 
-    <!-- FAQ section -->
-    <section class="faq-section">
-      <h2><i class="fas fa-circle-question"></i> Frequently Asked Questions</h2>
+  <!-- CONCERT CARDS -->
+  <div class="section-title">
+    <i class="fas fa-guitar"></i> 
+    <span>Trending ticket concerts</span>
+  </div>
+  <div class="card-grid">
+    <div class="concert-card">
+      <div class="card-icon"><i class="fas fa-microphone-alt"></i></div>
+      <h3 class="artist">Taylor Swift</h3>
+      <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> SoFi Stadium, LA</div>
+      <div class="card-footer"><span class="price">from $129</span><span class="tag">verified</span></div>
+    </div>
+    <div class="concert-card">
+      <div class="card-icon"><i class="fas fa-drum"></i></div>
+      <h3 class="artist">Coldplay</h3>
+      <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> Wembley, London</div>
+      <div class="card-footer"><span class="price">from $95</span><span class="tag">sold out</span></div>
+    </div>
+    <div class="concert-card">
+      <div class="card-icon"><i class="fas fa-headphones"></i></div>
+      <h3 class="artist">Beyoncé · Renaissance</h3>
+      <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> MetLife, NJ</div>
+      <div class="card-footer"><span class="price">from $210</span><span class="tag">verified</span></div>
+    </div>
+    <div class="concert-card">
+      <div class="card-icon"><i class="fas fa-guitar"></i></div>
+      <h3 class="artist">Ed Sheeran</h3>
+      <div class="venue"><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: #0046be;"></i> Rogers Centre, Toronto</div>
+      <div class="card-footer"><span class="price">from $78</span><span class="tag">low stock</span></div>
+    </div>
+  </div>
 
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>How do I get my tickets?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">Most tickets are delivered via mobile transfer or instant download. You can access them in your Ticketmaster account or via the venue's app.</div>
-      </div>
+  <!-- DESCRIPTION -->
+  <div class="ticket-description">
+    <h2><i class="fas fa-circle-check"></i> Official tickets, verified & secure</h2>
+    <p>Every ticket sold on Ticketmaster is 100% verified — backed by the official venue and artist. Enjoy seamless entry, mobile transfer, and dedicated support. From stadium rock to intimate jazz, find your concert and book with confidence.</p>
+    <p style="margin-top: 12px; font-weight: 400; color: #0046be;"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i> FanProtect guarantee included.</p>
+  </div>
 
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Are tickets refundable?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">Refunds depend on the event and the seller's policy. Many events offer FanProtect coverage. Check your order details for specific terms.</div>
-      </div>
+  <!-- PAGE CONTENT: Privacy, Contact, About, Terms, Help (hidden by default, shown via :target) -->
+  <div id="privacy" class="page-content">
+    <h2><i class="fas fa-lock"></i> Privacy Policy</h2>
+    <p><strong>Last updated:</strong> June 2026</p>
+    <p>Ticketmaster respects your privacy. This policy describes how we collect, use, and protect your personal information when you use our services.</p>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> We collect data to process transactions and improve your experience.</li>
+      <li><i class="fas fa-check-circle"></i> Your information is never sold to third parties.</li>
+      <li><i class="fas fa-check-circle"></i> You can request access, correction, or deletion of your data at any time.</li>
+    </ul>
+    <p>For full details, please refer to our complete Privacy Policy available in your account settings.</p>
+    <a href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back to home</a>
+  </div>
 
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>What is the official Ticketmaster resale?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">Ticketmaster's official resale platform allows fans to buy and sell verified tickets at face value or market price, always with buyer protection.</div>
-      </div>
+  <div id="contact" class="page-content">
+    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+    <p>We’re here to help. Reach out to our support team through any of the channels below.</p>
+    <ul>
+      <li><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +1 (800) 653‑8000 (available 24/7)</li>
+      <li><i class="fas fa-envelope"></i> <strong>Email:</strong> support@ticketmaster.com</li>
+      <li><i class="fas fa-comment"></i> <strong>Live chat:</strong> available on the app and website</li>
+      <li><i class="fas fa-twitter"></i> <strong>Twitter:</strong> @TicketmasterHelp</li>
+    </ul>
+    <p>Our team typically responds within 2 hours during peak times.</p>
+    <a href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back to home</a>
+  </div>
 
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Can I transfer my tickets to a friend?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">Yes! Most tickets are transferable via your Ticketmaster account. Simply select the order and choose 'Transfer' to share with a friend.</div>
-      </div>
-    </section>
+  <div id="about" class="page-content">
+    <h2><i class="fas fa-info-circle"></i> About Ticketmaster</h2>
+    <p>Ticketmaster is the world’s leading live event ticketing platform, connecting millions of fans with the artists, teams, and shows they love.</p>
+    <ul>
+      <li><i class="fas fa-flag"></i> Founded in 1976, we’ve been powering live experiences for over 45 years.</li>
+      <li><i class="fas fa-globe"></i> Operates in more than 30 countries worldwide.</li>
+      <li><i class="fas fa-ticket"></i> We sell tickets for concerts, sports, theater, and family events.</li>
+    </ul>
+    <p>Our mission is to make buying tickets safe, simple, and accessible to everyone.</p>
+    <a href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back to home</a>
+  </div>
 
-    <!-- FOOTER with privacy, contact, about, terms (separate links) -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="#"><i class="fas fa-lock"></i> Privacy</a>
-        <a href="#"><i class="fas fa-envelope"></i> Contact</a>
-        <a href="#"><i class="fas fa-info-circle"></i> About</a>
-        <a href="#"><i class="fas fa-file-lines"></i> Terms</a>
-        <a href="#"><i class="fas fa-ticket"></i> Help Center</a>
-      </div>
-      <div class="footer-copy">
-        <i class="fas fa-ticket-alt"></i> Ticketmaster · © 2026 · 
-        <span style="display: inline-block; margin: 0 4px;">|</span> 
-        <i class="fas fa-shield"></i> verified tickets
-      </div>
-    </footer>
+  <div id="terms" class="page-content">
+    <h2><i class="fas fa-file-lines"></i> Terms of Service</h2>
+    <p><strong>Effective:</strong> June 2026</p>
+    <p>By using Ticketmaster, you agree to the following terms. Please read them carefully.</p>
+    <ul>
+      <li><i class="fas fa-check"></i> All ticket sales are final unless otherwise stated.</li>
+      <li><i class="fas fa-check"></i> Resale of tickets is subject to venue and artist restrictions.</li>
+      <li><i class="fas fa-check"></i> We reserve the right to cancel orders if fraud is suspected.</li>
+      <li><i class="fas fa-check"></i> Full terms are available upon request.</li>
+    </ul>
+    <p>For any questions, please contact our legal team at legal@ticketmaster.com.</p>
+    <a href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back to home</a>
+  </div>
 
-  </div> <!-- .container -->
+  <div id="help" class="page-content">
+    <h2><i class="fas fa-circle-question"></i> Help Center</h2>
+    <p>Find answers to common questions and get support for your tickets.</p>
+    <ul>
+      <li><i class="fas fa-ticket"></i> <strong>Order issues?</strong> Check your order status in your account.</li>
+      <li><i class="fas fa-mobile-alt"></i> <strong>Mobile tickets:</strong> Download the app for easy access.</li>
+      <li><i class="fas fa-rotate-left"></i> <strong>Refunds & exchanges:</strong> See our refund policy.</li>
+      <li><i class="fas fa-user"></i> <strong>Account help:</strong> Reset your password or update your profile.</li>
+    </ul>
+    <p>Can’t find what you need? <a href="#contact" style="color: #0046be; font-weight: 600;">Contact our support team</a>.</p>
+    <a href="#" class="back-home"><i class="fas fa-arrow-left"></i> Back to home</a>
+  </div>
+
+  <!-- FAQ section -->
+  <section class="faq-section">
+    <h2><i class="fas fa-circle-question"></i> Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question"><span>How do I get my tickets?</span><i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Most tickets are delivered via mobile transfer or instant download. You can access them in your Ticketmaster account or via the venue's app.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>Are tickets refundable?</span><i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Refunds depend on the event and the seller's policy. Many events offer FanProtect coverage. Check your order details for specific terms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>What is the official Ticketmaster resale?</span><i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Ticketmaster's official resale platform allows fans to buy and sell verified tickets at face value or market price, always with buyer protection.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span>Can I transfer my tickets to a friend?</span><i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">Yes! Most tickets are transferable via your Ticketmaster account. Simply select the order and choose 'Transfer' to share with a friend.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER with links to Privacy, Contact, About, Terms, Help (each opens its content) -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#privacy"><i class="fas fa-lock"></i> Privacy</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#terms"><i class="fas fa-file-lines"></i> Terms</a>
+      <a href="#help"><i class="fas fa-circle-question"></i> Help Center</a>
+    </div>
+    <div class="footer-copy">
+      <i class="fas fa-ticket-alt"></i> Ticketmaster · © 2026 · 
+      <span style="display: inline-block; margin: 0 4px;">|</span> 
+      <i class="fas fa-shield"></i> verified tickets
+    </div>
+  </footer>
+
+</div> <!-- container -->
 </body>
 </html>
